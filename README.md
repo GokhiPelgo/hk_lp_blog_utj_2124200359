@@ -1,4 +1,4 @@
-# 🦁 ZOOBLOG — Astro Multilingual Animal Blog
+# ZOOBLOG — Astro Multilingual Animal Blog
 
 ZOOBLOG es un proyecto desarrollado con Astro, Tailwind CSS, GSAP y Lenis para aprender arquitectura frontend moderna, internacionalización (i18n), animaciones y generación de contenido dinámico mediante Markdown.
 
@@ -25,7 +25,6 @@ El proyecto funciona como un blog editorial sobre animales, biodiversidad y cons
 
 El proyecto soporta múltiples idiomas:
 
-```txt
 /es
 /en
 
@@ -58,12 +57,12 @@ imageAlt
 lang
 translationKey
 draft
-✅ Content Collections
+
 
 Astro valida automáticamente la estructura de los artículos mediante:
 
 src/content.config.ts
-✅ Búsqueda de artículos
+Búsqueda de artículos
 
 El blog incluye:
 
@@ -86,19 +85,6 @@ efectos visuales
 scroll animations
 Lenis
 
-Para:
-
-smooth scrolling
-navegación fluida
-✅ Diseño responsive
-
-El sitio está optimizado para:
-
-desktop
-tablet
-móvil
-
-Usando:
 
 CSS Grid
 Flexbox
@@ -121,7 +107,7 @@ src/
 ├── styles/
 │
 └── content.config.ts
-🖼️ Imágenes por idioma
+
 
 Las imágenes se organizan por idioma:
 
@@ -133,18 +119,7 @@ Esto permite:
 imágenes distintas por idioma
 mejor SEO internacional
 mejor organización editorial
-⚡ Instalación
-1. Clonar proyecto
-git clone https://github.com/TU-USUARIO/zooblog-astro.git
-2. Entrar al proyecto
-cd zooblog-astro
-3. Instalar dependencias
-npm install
-4. Ejecutar entorno local
-npm run dev
-🏗️ Build de producción
-npm run build
-🧠 Objetivos de aprendizaje
+
 
 Este proyecto fue desarrollado para aprender:
 
@@ -159,18 +134,8 @@ Internacionalización
 Arquitectura frontend moderna
 SEO técnico
 Accesibilidad web
-📚 Próximas mejoras
-ScrollTrigger avanzado
-Astro Assets
-MDX
-Sistema de categorías dinámicas
-CMS Headless
-View Transitions
-Dark Mode
-Paginación
-Related Posts
-Comentarios
-Optimización avanzada de imágenes
-👨‍💻 Autor
+
+
+#Autor
 
 Desarrollado por Chelo.
