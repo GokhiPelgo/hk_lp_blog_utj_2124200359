@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+---
+
+<BaseLayout title={lang === "es" ? "Donaciones | ZOOBLOG" : "Donations | ZOOBLOG"}>
+  <section class="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-sky-50">
+    <div class="mx-auto max-w-6xl px-6 py-24">
+      <div class="grid items-center gap-16 lg:grid-cols-2">
+        <div>
+          <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-bold text-emerald-700">
+            {lang === "es" ? "Apoya la conservación animal" : "Support animal conservation"}
+          </span>
+
+          <h1 class="mt-6 text-5xl font-black tracking-tight text-slate-950 md:text-6xl">
+            {lang === "es"
+              ? "Ayudemos a proteger las especies en peligro de extinción"
+              : "Help protect endangered species"}
+          </h1>
+
+          <p class="mt-6 text-lg leading-8 text-slate-600">
+            {lang === "es"
+              ? "Las donaciones ayudan a financiar refugios, atención veterinaria, monitoreo de especies y recuperación de hábitats."
+              : "Donations help fund shelters, veterinary care, species monitoring and habitat recovery."}
+          </p>
+        </div>
+
+        <img
+              src={lang === "es" ? "/images/es/ajolote-mexicano.webp" : "/images/en/axolotl.webp"}
+              alt={lang === "es" ? "Ajolote" : "Opossum"}
+              loading="lazy"
+              class="aspect-[4/3] h-full w-full rounded-3xl object-cover shadow-lg shadow-black/10 transition-all duration-500 group-hover:scale-[1.02]"
+            />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

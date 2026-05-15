@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import BlogCard from "../../../components/BlogCard.astro";
+import { getCollection } from "astro:content";
+import { useTranslations } from "../../../i18n/utils";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+
+  const paths = posts.flatMap((post) => {
+    return post.data.tags.map((tag) => ({
+      params: {
+        lang: post.data.lang,
+        tag,
+      },
+    }));
+  });
+
+  const uniquePaths = Array.from(
+    new Map(paths.map((path) => [`${path.params.lang}-${path.params.tag}`, path])).values()
+  );
+
+  return uniquePaths;
+}
+
+const { lang, tag } = Astro.params;
+const t = useTranslations(lang);
+
+const posts = await getCollection("blog");
+
+const filteredPosts = posts
+  .filter((post) => post.data.lang === lang)
+  .filter((post) => post.data.draft === false)
+  .filter((post) => post.data.tags.includes(tag));
+---
+
+<BaseLayout title={`${t("category")}: ${tag} | ZOOBLOG`}>
+  <section class="relative min-h-screen bg-gradient-to-br from-emerald-50 via-white to-sky-50">
+    <div class="mx-auto max-w-6xl px-6 py-24">
+      <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-bold text-emerald-700">
+        {t("category")}
+      </span>
+
+      <h1 class="mt-6 text-5xl font-black text-slate-950">
+        #{tag}
+      </h1>
+
+      <div class="mt-14 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {filteredPosts.map((post) => (
+          <BlogCard post={post} lang={lang} />
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

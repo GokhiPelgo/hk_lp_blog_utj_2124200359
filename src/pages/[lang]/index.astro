@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations } from "../../i18n/utils";
+
+export function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+    { params: { lang: "en" } },
+  ];
+}
+
+const lang = Astro.params.lang as "es" | "en";
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={lang === "es" ? "Inicio | ZOOBLOG" : "Home | ZOOBLOG"}>
+  <section class="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-sky-50">
+    <div class="mx-auto grid min-h-[85vh] max-w-6xl items-center gap-16 px-6 py-24 lg:grid-cols-2">
+
+      <!-- TEXTO -->
+      <div data-scroll-reveal class="relative z-10">
+        <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-bold text-emerald-700">
+          {lang === "es" ? "Todo sobre el reino animal" : "All about the animal kingdom"}
+        </span>
+
+        <h1
+          data-hero-title
+          class="mt-6 text-5xl font-black leading-tight tracking-tight text-slate-950 md:text-6xl"
+        >
+          {lang === "es" ? "ZOOBLOGÍA DE LOS ANIMALES" : "ANIMAL ZOOLOGY"}
+        </h1>
+
+        <p data-scroll-reveal class="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+          {lang === "es"
+            ? "Explora datos, especies, hábitats y curiosidades sobre los animales que habitan nuestro planeta."
+            : "Explore facts, species, habitats and curiosities about the animals that inhabit our planet."}
+        </p>
+
+        <div data-scroll-reveal class="mt-8 flex flex-wrap gap-4">
+          <a
+            href={`/${lang}/blog`}
+            class="inline-flex rounded-2xl bg-emerald-600 px-6 py-3 font-bold text-white shadow-lg shadow-emerald-200 transition hover:-translate-y-1 hover:bg-emerald-700"
+          >
+            {t("viewBlog")}
+          </a>
+
+          <a
+            href={`/${lang}/blog`}
+            class="inline-flex rounded-2xl border border-slate-300 bg-white px-6 py-3 font-bold text-slate-700 transition hover:-translate-y-1 hover:border-emerald-400 hover:text-emerald-700"
+          >
+            {t("exploreSpecies")}
+          </a>
+        </div>
+      </div>
+
+      <!-- IMÁGENES DINÁMICAS POR IDIOMA -->
+      <div data-scroll-reveal class="relative">
+        <div class="absolute -right-8 -top-8 h-48 w-48 rounded-full bg-sky-200/60 blur-3xl"></div>
+        <div class="absolute -bottom-8 -left-8 h-48 w-48 rounded-full bg-emerald-200/60 blur-3xl"></div>
+
+        <div class="relative grid grid-cols-12 gap-3">
+
+          <!-- Imagen grande izquierda -->
+          <div class="group relative col-span-7 row-span-2 overflow-hidden rounded-3xl">
+            <img
+              data-scroll-image
+              src={lang === "es" ? "/images/es/guacamaya.jpg" : "/images/en/macaw.jpg"}
+              alt={lang === "es" ? "Guacamaya" : "Macaw"}
+              loading="eager"
+              class="aspect-[3/4] h-full w-full rounded-3xl object-cover shadow-lg shadow-black/10 transition-all duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+
+          <!-- Imagen superior derecha -->
+          <div class="group relative col-span-5 overflow-hidden rounded-3xl">
+            <img
+              data-scroll-image
+              src={lang === "es" ? "/images/es/jaguar.jpg" : "/images/en/jaguar.jpg"}
+              alt={lang === "es" ? "Jaguar" : "Jaguar"}
+              loading="lazy"
+              class="aspect-[4/3] h-full w-full rounded-3xl object-cover shadow-lg shadow-black/10 transition-all duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+
+          <!-- Imagen media derecha -->
+          <div class="group relative col-span-5 overflow-hidden rounded-3xl">
+            <img
+              data-scroll-image
+              src={lang === "es" ? "/images/es/tlacuache.jpg" : "/images/en/opossum.jpg"}
+              alt={lang === "es" ? "Tlacuache" : "Opossum"}
+              loading="lazy"
+              class="aspect-[4/3] h-full w-full rounded-3xl object-cover shadow-lg shadow-black/10 transition-all duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+
+          <!-- Imagen ancha inferior -->
+          <div class="group relative col-span-12 overflow-hidden rounded-3xl">
+            <img
+              data-scroll-image
+              src={lang === "es" ? "/images/es/leopardo_nieve.jpg" : "/images/en/snow_leopard.jpg"}
+              alt={lang === "es" ? "Leopardo de la nieve" : "Snow leopard"}
+              loading="lazy"
+              class="aspect-[21/9] h-full w-full rounded-3xl object-cover shadow-lg shadow-black/10 transition-all duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

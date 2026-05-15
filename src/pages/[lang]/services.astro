@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+---
+
+<BaseLayout title={lang === "es" ? "Servicios | ZOOBLOG" : "Services | ZOOBLOG"}>
+  <section class="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-sky-50">
+    <div class="mx-auto max-w-6xl px-6 py-24">
+      <div class="max-w-3xl">
+        <span class="inline-flex rounded-full bg-emerald-100 px-4 py-2 text-sm font-bold text-emerald-700">
+          {lang === "es" ? "Lo que encontrarás en ZOOBLOG" : "What you will find in ZOOBLOG"}
+        </span>
+
+        <h1 class="mt-6 text-5xl font-black tracking-tight text-slate-950 md:text-6xl">
+          {lang === "es" ? "Explora el mundo animal" : "Explore the animal world"}
+        </h1>
+      </div>
+
+      <div class="mt-20 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <article class="rounded-[2rem] bg-white p-8 shadow-xl shadow-emerald-100">
+          <div class="mb-5 text-4xl">🐆</div>
+          <h2 class="text-2xl font-black text-slate-900">
+            {lang === "es" ? "Especies salvajes" : "Wild species"}
+          </h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            {lang === "es"
+              ? "Aprende sobre animales exóticos y especies que habitan distintos ecosistemas."
+              : "Learn about exotic animals and species that live in different ecosystems."}
+          </p>
+        </article>
+
+        <article class="rounded-[2rem] bg-white p-8 shadow-xl shadow-sky-100">
+          <div class="mb-5 text-4xl">🌍</div>
+          <h2 class="text-2xl font-black text-slate-900">
+            {lang === "es" ? "Hábitats naturales" : "Natural habitats"}
+          </h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            {lang === "es"
+              ? "Descubre cómo viven los animales en selvas, océanos y sabanas."
+              : "Discover how animals live in forests, oceans and savannas."}
+          </p>
+        </article>
+
+        <article class="rounded-[2rem] bg-white p-8 shadow-xl shadow-orange-100">
+          <div class="mb-5 text-4xl">📚</div>
+          <h2 class="text-2xl font-black text-slate-900">
+            {lang === "es" ? "Datos y curiosidades" : "Facts and curiosities"}
+          </h2>
+          <p class="mt-4 leading-7 text-slate-600">
+            {lang === "es"
+              ? "Encuentra información educativa sobre comportamiento animal y biodiversidad."
+              : "Find educational information about animal behavior and biodiversity."}
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

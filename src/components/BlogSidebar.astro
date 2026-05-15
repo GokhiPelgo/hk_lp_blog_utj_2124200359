@@ -1,0 +1,66 @@
+---
+const { posts, lang } = Astro.props as {
+  posts: Array<{
+    id: string;
+    data: {
+      title: string;
+      tags: string[];
+      pubDate: Date;
+    };
+  }>;
+  lang: string;
+};
+
+const categories = [...new Set(posts.flatMap((post) => post.data.tags))];
+
+const recentPosts = posts
+  .slice()
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+---
+
+<aside class="sticky top-24 hidden h-fit rounded-[2rem] border border-emerald-100 bg-white/90 p-6 shadow-xl shadow-emerald-100/60 backdrop-blur lg:block">
+  <h2 class="text-lg font-black text-slate-950">
+    {lang === "es" ? "Explorar" : "Explore"}
+  </h2>
+
+  <div class="mt-6">
+    <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+      {lang === "es" ? "Categorías" : "Categories"}
+    </p>
+
+    <div class="mt-4 space-y-2">
+      {categories.map((tag) => (
+        <a
+          href={`/${lang}/categoria/${tag}`}
+          class="flex items-center justify-between rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-bold text-emerald-700 transition hover:bg-emerald-100"
+        >
+          <span>#{tag}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <div class="mt-8">
+    <p class="text-xs font-black uppercase tracking-[0.2em] text-slate-400">
+      {lang === "es" ? "Últimos posts" : "Latest posts"}
+    </p>
+
+    <div class="mt-4 space-y-4">
+      {recentPosts.map((post) => (
+        <a
+          href={`/${lang}/blog/${post.id.split("/").pop()}`}
+          class="block rounded-2xl border border-slate-100 p-4 transition hover:border-emerald-200 hover:bg-emerald-50"
+        >
+          <p class="text-xs font-bold text-emerald-700">
+            {post.data.pubDate.toLocaleDateString(lang === "es" ? "es-MX" : "en-US")}
+          </p>
+
+          <h3 class="mt-2 text-sm font-black leading-snug text-slate-900">
+            {post.data.title}
+          </h3>
+        </a>
+      ))}
+    </div>
+  </div>
+</aside>

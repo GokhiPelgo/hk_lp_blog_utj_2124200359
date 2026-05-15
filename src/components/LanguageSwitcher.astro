@@ -1,0 +1,42 @@
+---
+import { getOppositeLang } from "../i18n/utils";
+
+const { lang } = Astro.props;
+const oppositeLang = getOppositeLang(lang);
+
+const currentPath = Astro.url.pathname;
+
+let switchedPath = `/${oppositeLang}`;
+
+// Home
+if (currentPath === `/${lang}`) {
+  switchedPath = `/${oppositeLang}`;
+}
+
+// Blog
+else if (currentPath === `/${lang}/blog`) {
+  switchedPath = `/${oppositeLang}/blog`;
+}
+
+// About
+else if (currentPath === `/${lang}/about`) {
+  switchedPath = `/${oppositeLang}/about`;
+}
+
+// Services
+else if (currentPath === `/${lang}/services`) {
+  switchedPath = `/${oppositeLang}/services`;
+}
+
+// Post específico: fallback al blog del otro idioma
+else if (currentPath.startsWith(`/${lang}/blog/`)) {
+  switchedPath = `/${oppositeLang}/blog`;
+}
+---
+
+<a
+  href={switchedPath}
+  class="rounded-full bg-emerald-100 px-4 py-2 text-xs font-black text-emerald-700 hover:bg-emerald-200"
+>
+  {oppositeLang.toUpperCase()}
+</a>
